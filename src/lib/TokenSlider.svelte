@@ -1,8 +1,27 @@
 <script>
     let amount = 0;
+    $: gradient = `linear-gradient(to right, #A9A9A9 0%, #A9A9A9 ${amount}%, #d3d3d3 ${amount}%, #d3d3d3 100%)`;
+    $: leftColor = amount >= 25 ? '#A9A9A9' : '#d3d3d3';
+    $: middleLeftColor = amount >= 50 ? '#A9A9A9' : '#d3d3d3';
+    $: middleRightColor = amount >= 75 ? '#A9A9A9' : '#d3d3d3';
+    $: rightColor = amount >= 100 ? '#A9A9A9' : '#d3d3d3';
   </script>
   
-  <style>
+
+  
+  <div class="slider-container">
+    <input type="range" min="0" max="100" bind:value={amount} style="--gradient: {gradient}"/>
+    <span class="tooltip" style="left: calc({amount}% * 0.95);">{amount}%</span>
+    <div class="marker-container">
+        <div class="marker marker-0" style="background-color: #A9A9A9;"></div>
+        <div class="marker marker-25" style="background-color: {leftColor};"></div>
+        <div class="marker marker-50" style="background-color: {middleLeftColor};"></div>
+        <div class="marker marker-75" style="background-color: {middleRightColor};"></div>
+        <div class="marker marker-100" style="background-color: {rightColor};"></div>
+    </div>
+  </div>
+
+  <style lang="postcss">
     .slider-container {
       max-width: 600px;
       position: relative;
@@ -20,6 +39,7 @@
       padding: 0;
       position: relative;
       z-index: 2;
+      background: var(--gradient);
     }
     
     input[type="range"]::-webkit-slider-thumb {
@@ -79,16 +99,4 @@
     .marker-75 { left: calc(75% - 1px); }
     .marker-100 { right: -14px; }
   </style>
-  
-  <div class="slider-container">
-    <input type="range" min="0" max="100" bind:value={amount} />
-    <span class="tooltip" style="left: calc({amount}% * 0.95);">{amount}%</span>
-    <div class="marker-container">
-      <div class="marker marker-0"></div>
-      <div class="marker marker-25"></div>
-      <div class="marker marker-50"></div>
-      <div class="marker marker-75"></div>
-      <div class="marker marker-100"></div>
-    </div>
-  </div>
   
