@@ -1,5 +1,5 @@
 <script>
-    let amount = 0;
+    export let amount = 0;
     $: gradient = `linear-gradient(to right, #6e6d6d 0%, #6e6d6d ${amount}%, #d3d3d3 ${amount}%, #d3d3d3 100%)`;
     $: leftColor = amount >= 25 ? '#6e6d6d' : '#d3d3d3';
     $: middleLeftColor = amount >= 50 ? '#6e6d6d' : '#d3d3d3';

@@ -1,6 +1,7 @@
 <script>
 
     import TokenSlider from "./TokenSlider.svelte";
+    let amount  = 0;
 
 </script>
 <div>
@@ -16,10 +17,10 @@
                 <div class="w-20">Price: </div><input type="text"><div class="ml-2">ERG</div>
             </div>
             <div class="flex items-center">
-                <div class="w-20">Amount: </div><input type="text"><div class="ml-2">SigmaUSD</div>
+                <div class="w-20">Amount: </div><input type="text" bind:value={amount}><div class="ml-2">SigmaUSD</div>
             </div>
             <div>
-                <TokenSlider></TokenSlider>
+                <TokenSlider bind:amount={amount} on:change={e => amount = e.detail} />
             </div>
             <div class="flex items-center">
                 <div class="w-20">Value: </div><input type="text"><div class="ml-2">ERG</div>
