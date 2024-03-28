@@ -1,10 +1,10 @@
 <script>
     let amount = 0;
-    $: gradient = `linear-gradient(to right, #A9A9A9 0%, #A9A9A9 ${amount}%, #d3d3d3 ${amount}%, #d3d3d3 100%)`;
-    $: leftColor = amount >= 25 ? '#A9A9A9' : '#d3d3d3';
-    $: middleLeftColor = amount >= 50 ? '#A9A9A9' : '#d3d3d3';
-    $: middleRightColor = amount >= 75 ? '#A9A9A9' : '#d3d3d3';
-    $: rightColor = amount >= 100 ? '#A9A9A9' : '#d3d3d3';
+    $: gradient = `linear-gradient(to right, #6e6d6d 0%, #6e6d6d ${amount}%, #d3d3d3 ${amount}%, #d3d3d3 100%)`;
+    $: leftColor = amount >= 25 ? '#6e6d6d' : '#d3d3d3';
+    $: middleLeftColor = amount >= 50 ? '#6e6d6d' : '#d3d3d3';
+    $: middleRightColor = amount >= 75 ? '#6e6d6d' : '#d3d3d3';
+    $: rightColor = amount >= 100 ? '#6e6d6d' : '#d3d3d3';
   </script>
   
 
@@ -13,7 +13,7 @@
     <input type="range" min="0" max="100" bind:value={amount} style="--gradient: {gradient}"/>
     <span class="tooltip" style="left: calc({amount}% * 0.95);">{amount}%</span>
     <div class="marker-container">
-        <div class="marker marker-0" style="background-color: #A9A9A9;"></div>
+        <div class="marker marker-0" style="background-color: #6e6d6d;"></div>
         <div class="marker marker-25" style="background-color: {leftColor};"></div>
         <div class="marker marker-50" style="background-color: {middleLeftColor};"></div>
         <div class="marker marker-75" style="background-color: {middleRightColor};"></div>

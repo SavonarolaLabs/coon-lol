@@ -18,6 +18,7 @@
 
 <style lang="postcss">
     :global(html) {
-        background-color: theme(colors.red.400);
+        /* background-color: theme(colors.red.100); */
+        background-image: linear-gradient(to right, #f0f7fa, #e0e8ef);
     }
 </style>
