@@ -52,7 +52,7 @@ function calculateSigRsvRateWithFee(
 	return rateRSVERG;
 }
 
-export function calculateSigUsdRateWithFee(
+export function calculateMintSigUsdRateWithFee(
 	inErg: bigint,
 	inCircSigUSD: bigint,
 	oraclePrice: bigint,
@@ -96,6 +96,45 @@ export function calculateSigUsdRateWithFee(
 	console.log("----------FINAL-----------");
 	console.log("🚀 ~ rateSCERG:", rateSCERG);
 	console.log("                          ");
+	return rateSCERG; //cents for nanoerg
+}
+
+export function calculateRedeemSigUsdRateWithFee(
+	inErg: bigint,
+	inCircSigUSD: bigint,
+	oraclePrice: bigint,
+	requestERG: bigint,
+	direction: bigint
+): number {
+	console.log("================================");
+	console.log("🚀 ~ calculateSigUsdRateWithFee:")
+	console.log("🚀 ~ inErg:", inErg)
+	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD)
+	console.log("🚀 ~ oraclePrice:", oraclePrice)
+	console.log("🚀 ~ requestERG:", requestERG)
+	console.log("🚀 ~ direction:", direction)
+	let rateSCERG: number;
+	const bcReserveNeededIn = inCircSigUSD * oraclePrice;
+	console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+	const liabilitiesIn: bigint = maxBigInt(
+		minBigInt(bcReserveNeededIn, inErg),
+		0n
+	);
+
+	const liableRate = liabilitiesIn / inCircSigUSD; // nanoerg for cent
+	const scNominalPrice = minBigInt(liableRate, oraclePrice); // nanoerg for cent
+
+	console.log("----------RATES-----------");
+	console.log("🚀 ~ liableRate:", liableRate);
+	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	console.log("🚀 ~ scNominalPrice:", scNominalPrice);
+	console.log("                          ");
+
+	//const bcDeltaExpectedWithFee = bcDeltaExpected + fee * direction;
+	const bcDeltaExpected = requestERG * FEE_DENOM / (-FEE + FEE_DENOM) 
+	const requestSC = bcDeltaExpected / scNominalPrice
+
+	rateSCERG = Number(requestSC) / Number(requestERG);
 	return rateSCERG; //cents for nanoerg
 }
 

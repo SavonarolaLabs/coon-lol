@@ -4,6 +4,10 @@ import { writable, type Writable } from "svelte/store";
 
 export const usd_erg_oracle_box: Writable<any> = writable();
 export const sigma_usd_bank_box: Writable<any> = writable();
+
+export const SIGMA_USD_MINER_FEE_NANO_ERG = 1 * 10**7
+export const SIGMA_USD_FEE_DENOM          = 100000
+export const SIGMA_USD_UI_FEE             = 600
 //export const rate_rsv_per_nano_erg: Writable<Number> = writable(0);
 //export const rate_usd_cent_per_nano_erg: Writable<Number> = writable(0);
 
