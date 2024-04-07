@@ -2,6 +2,12 @@
     import RecentTrades from "$lib/RecentTrades.svelte";
     import SigmaUsdBuySell from "$lib/SigmaUsdBuySell.svelte";
     import SigmaUsdChart from "$lib/SigmaUsdChart.svelte";
+    import { initSigmaUsdStore, usd_erg_oracle_box } from "$lib/sigmaUsd/store";
+    import { onMount } from "svelte";
+
+    onMount(async()=>{
+        await initSigmaUsdStore();
+    })
 </script>
 
 <div>SigmaUsd</div>

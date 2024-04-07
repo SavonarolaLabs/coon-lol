@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fleet-sdk/core": "^0.3.4",
 		"lightweight-charts": "^4.1.3"
 	}
 }

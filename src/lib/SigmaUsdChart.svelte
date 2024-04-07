@@ -14,6 +14,8 @@
         { time: '2019-04-13', open: 83.01, high: 88.63, low: 79.05, close: 87.63 },
         { time: '2019-04-14', open: 87.45, high: 95.00, low: 85.75, close: 93.89 },
         { time: '2019-04-15', open: 94.10, high: 95.65, low: 88.42, close: 90.12 },
+        { time: '2019-04-16', open: 90.12, high: 90.12, low: 90.12, close: 90.12 },
+        { time: '2019-04-17', open: 90.12, high: 95.65, low: 88.42, close: 94.10},
         // Add more data as needed
       ]);
   
