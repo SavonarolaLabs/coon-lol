@@ -30,24 +30,24 @@ function calculateSigRsvRateWithFee(
 ): number {
 	let rateRSVERG: number;
 	const bcReserveNeededIn = inCircSigUSD * oraclePrice; // nanoergov
-	console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+	// console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
 	const liabilitiesIn: bigint = maxBigInt(
 		minBigInt(bcReserveNeededIn, inErg),
 		0n
 	);
 
-	console.log("reserve rate", inErg / bcReserveNeededIn);
+	// console.log("reserve rate", inErg / bcReserveNeededIn);
 	const equityIn = inErg - liabilitiesIn;
-	console.log("🚀 ~ equityIn:", equityIn);
+	// console.log("🚀 ~ equityIn:", equityIn);
 	const equityRate = equityIn / inCircSigRSV; //nano
-	console.log("🚀 ~ equityRate:", equityRate);
+	// console.log("🚀 ~ equityRate:", equityRate);
 	const bcDeltaExpected = equityRate * requestRSV;
-	console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
+	// console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
 	const fee = absBigInt(bcDeltaExpected * FEE) / FEE_DENOM;
 	const bcDeltaExpectedWithFee = bcDeltaExpected + direction * fee;
-	console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
+	// console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
 	rateRSVERG = Number(requestRSV) / Number(bcDeltaExpectedWithFee);
-	console.log("🚀 ~ rateRSVERG:", rateRSVERG);
+	// console.log("🚀 ~ rateRSVERG:", rateRSVERG);
 
 	return rateRSVERG;
 }
@@ -59,16 +59,16 @@ export function calculateMintSigUsdRateWithFee(
 	requestSC: bigint,
 	direction: bigint
 ): number {
-	console.log("================================");
-	console.log("🚀 ~ calculateSigUsdRateWithFee:")
-	console.log("🚀 ~ inErg:", inErg)
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD)
-	console.log("🚀 ~ oraclePrice:", oraclePrice)
-	console.log("🚀 ~ requestSC:", requestSC)
-	console.log("🚀 ~ direction:", direction)
+	// console.log("================================");
+	// console.log("🚀 ~ calculateSigUsdRateWithFee:")
+	// console.log("🚀 ~ inErg:", inErg)
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD)
+	// console.log("🚀 ~ oraclePrice:", oraclePrice)
+	// console.log("🚀 ~ requestSC:", requestSC)
+	// console.log("🚀 ~ direction:", direction)
 	let rateSCERG: number;
 	const bcReserveNeededIn = inCircSigUSD * oraclePrice;
-	console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+	// console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
 	const liabilitiesIn: bigint = maxBigInt(
 		minBigInt(bcReserveNeededIn, inErg),
 		0n
@@ -77,25 +77,24 @@ export function calculateMintSigUsdRateWithFee(
 	const liableRate = liabilitiesIn / inCircSigUSD; // nanoerg for cent
 	const scNominalPrice = minBigInt(liableRate, oraclePrice); // nanoerg for cent
 
-	console.log("----------RATES-----------");
-	console.log("🚀 ~ liableRate:", liableRate);
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
-	console.log("🚀 ~ scNominalPrice:", scNominalPrice);
-	console.log("                          ");
-
-	console.log("--------------------------");
-	console.log("🚀 ~ requestSC:", requestSC);
+	// console.log("----------RATES-----------");
+	// console.log("🚀 ~ liableRate:", liableRate);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ scNominalPrice:", scNominalPrice);
+	// console.log("                          ");
+	// console.log("--------------------------");
+	// console.log("🚀 ~ requestSC:", requestSC);
 	const bcDeltaExpected = scNominalPrice * requestSC;
-	console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
+	// console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
 	const fee = absBigInt(bcDeltaExpected * FEE) / FEE_DENOM;
-	console.log("🚀 ~ fee:", fee);
+	// console.log("🚀 ~ fee:", fee);
 	const bcDeltaExpectedWithFee = bcDeltaExpected + fee * direction;
-	console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
+	// console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
 	rateSCERG = Number(requestSC) / Number(bcDeltaExpectedWithFee);
-	console.log("                          ");
-	console.log("----------FINAL-----------");
-	console.log("🚀 ~ rateSCERG:", rateSCERG);
-	console.log("                          ");
+	// console.log("                          ");
+	// console.log("----------FINAL-----------");
+	// console.log("🚀 ~ rateSCERG:", rateSCERG);
+	// console.log("                          ");
 	return rateSCERG; //cents for nanoerg
 }
 
@@ -106,16 +105,16 @@ export function calculateRedeemSigUsdRateWithFee(
 	requestERG: bigint,
 	direction: bigint
 ): number {
-	console.log("================================");
-	console.log("🚀 ~ calculateSigUsdRateWithFee:")
-	console.log("🚀 ~ inErg:", inErg)
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD)
-	console.log("🚀 ~ oraclePrice:", oraclePrice)
-	console.log("🚀 ~ requestERG:", requestERG)
-	console.log("🚀 ~ direction:", direction)
+	// console.log("================================");
+	// console.log("🚀 ~ calculateSigUsdRateWithFee:")
+	// console.log("🚀 ~ inErg:", inErg)
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD)
+	// console.log("🚀 ~ oraclePrice:", oraclePrice)
+	// console.log("🚀 ~ requestERG:", requestERG)
+	// console.log("🚀 ~ direction:", direction)
 	let rateSCERG: number;
 	const bcReserveNeededIn = inCircSigUSD * oraclePrice;
-	console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+	// console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
 	const liabilitiesIn: bigint = maxBigInt(
 		minBigInt(bcReserveNeededIn, inErg),
 		0n
@@ -124,11 +123,11 @@ export function calculateRedeemSigUsdRateWithFee(
 	const liableRate = liabilitiesIn / inCircSigUSD; // nanoerg for cent
 	const scNominalPrice = minBigInt(liableRate, oraclePrice); // nanoerg for cent
 
-	console.log("----------RATES-----------");
-	console.log("🚀 ~ liableRate:", liableRate);
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
-	console.log("🚀 ~ scNominalPrice:", scNominalPrice);
-	console.log("                          ");
+	// console.log("----------RATES-----------");
+	// console.log("🚀 ~ liableRate:", liableRate);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ scNominalPrice:", scNominalPrice);
+	// console.log("                          ");
 
 	//const bcDeltaExpectedWithFee = bcDeltaExpected + fee * direction;
 	const bcDeltaExpected = requestERG * FEE_DENOM / (-FEE + FEE_DENOM) 
@@ -153,22 +152,22 @@ async function extractBoxesData() {
 	const bankBox = await getBankBox();
 
 	const inErg = BigInt(bankBox.value);
-	console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ inErg:", inErg);
 
 	const inSigUSD = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGUSD).amount
 	);
-	console.log("🚀 ~ inSigUSD:", inSigUSD);
+	// console.log("🚀 ~ inSigUSD:", inSigUSD);
 
 	const inSigRSV = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGRSV).amount
 	);
-	console.log("🚀 ~ inSigRSV:", inSigRSV);
+	// console.log("🚀 ~ inSigRSV:", inSigRSV);
 
 	const inCircSigUSD = BigInt(bankBox.additionalRegisters.R4.renderedValue);
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
 	const inCircSigRSV = BigInt(bankBox.additionalRegisters.R5.renderedValue);
-	console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
+	// console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
 
 	bankBox.additionalRegisters.R4 =
 		bankBox.additionalRegisters.R4.serializedValue;
@@ -178,7 +177,7 @@ async function extractBoxesData() {
 	// ORACLE PRICE / 100n
 	const oraclePrice =
 		BigInt(oracleBox.additionalRegisters.R4.renderedValue) / 100n; // nano erg for cent
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
 
 	return {
 		inErg,
@@ -203,18 +202,18 @@ function calculateOutputRsv(
 	direction: bigint
 ) {
 	const requestErg = BigInt(Math.floor(Number(requestRSV) / rateWithFee));
-	console.log("🚀 ~ requestErg:", requestErg);
-	console.log("🚀 ~ requestRSV:", requestRSV);
+	// console.log("🚀 ~ requestErg:", requestErg);
+	// console.log("🚀 ~ requestRSV:", requestRSV);
 
 	const outErg = inErg + direction * requestErg;
-	console.log("🚀 ~ inErg:", inErg);
-	console.log("🚀 ~ outErg:", outErg);
+	// console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ outErg:", outErg);
 
 	const outSigRSV = inSigRSV - direction * requestRSV;
-	console.log("🚀 ~ outSigRSV:", outSigRSV);
+	// console.log("🚀 ~ outSigRSV:", outSigRSV);
 
 	const outCircSigRSV = inCircSigRSV + direction * requestRSV;
-	console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
+	// console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
 
 	const outSigUSD = inSigUSD;
 	const outCircSigUSD = inCircSigUSD;
@@ -240,34 +239,34 @@ function calculateOutputSc(
 	direction: bigint
 ) {
 	const requestErg = BigInt(Math.floor(Number(requestSC) / rateWithFee)); //nanoerg
-	console.log("---------EXCHANGE----------");
-	console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
-	console.log("🚀 ~ requestSC:", requestSC, " | cents");
-	console.log("                          ");
+	// console.log("---------EXCHANGE----------");
+	// console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
+	// console.log("🚀 ~ requestSC:", requestSC, " | cents");
+	// console.log("                          ");
 
 	// Bank out
 	const outErg = inErg + requestErg * direction; //
-	console.log(
-		"inErg:",
-		inErg,
-		" + requestErg:",
-		requestErg,
-		" = outErg:",
-		outErg
-	);
+	//  console.log(
+	// 	"inErg:",
+	// 	inErg,
+	// 	" + requestErg:",
+	// 	requestErg,
+	// 	" = outErg:",
+	// 	outErg
+	// );
 
 	const outSigUSD = inSigUSD - requestSC * direction; //
-	console.log(
-		"inSigUSD:",
-		inSigUSD,
-		" -requestSC:",
-		requestSC,
-		" = outSigUSD:",
-		outSigUSD
-	);
+	// console.log(
+	// 	"inSigUSD:",
+	// 	inSigUSD,
+	// 	" -requestSC:",
+	// 	requestSC,
+	// 	" = outSigUSD:",
+	// 	outSigUSD
+	// );
 
 	const outCircSigUSD = inCircSigUSD + requestSC * direction;
-	console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
+	// console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
 
 	const outSigRSV = inSigRSV;
 	const outCircSigRSV = inCircSigRSV;
@@ -298,30 +297,30 @@ export async function receiveRSVTx(
 
 	//------------------bank-box-in---------------------
 	const inErg = BigInt(bankBox.value);
-	console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ inErg:", inErg);
 	const inSigUSD = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGUSD).amount
 	);
-	console.log("🚀 ~ inSigUSD:", inSigUSD);
+	// console.log("🚀 ~ inSigUSD:", inSigUSD);
 	const inSigRSV = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGRSV).amount
 	);
-	console.log("🚀 ~ inSigRSV:", inSigRSV);
+	// console.log("🚀 ~ inSigRSV:", inSigRSV);
 	//--------------------------------------------------
 
 	const inCircSigUSD = BigInt(bankBox.additionalRegisters.R4.renderedValue);
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
 	const inCircSigRSV = BigInt(bankBox.additionalRegisters.R5.renderedValue);
-	console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
+	// console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
 	const bankNFT = bankBox.assets.find(
 		(asset) => asset.tokenId == TOKEN_BANK_NFT
 	);
-	console.log("🚀 ~ bankNFT:", bankNFT);
+	// console.log("🚀 ~ bankNFT:", bankNFT);
 
 	// ORACLE PRICE / 100n
 	const oraclePrice =
 		BigInt(oracleBox.additionalRegisters.R4.renderedValue) / 100n; // nano erg for cent
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
 
 	function calculatePriceWithFee(
 		inErg: bigint,
@@ -332,24 +331,24 @@ export async function receiveRSVTx(
 	): number {
 		let rateRSVERG: number;
 		const bcReserveNeededIn = inCircSigUSD * oraclePrice; // nanoergov
-		console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+		// console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
 		const liabilitiesIn: bigint = maxBigInt(
 			minBigInt(bcReserveNeededIn, inErg),
 			0n
 		);
 
-		console.log("reserve rate", inErg / bcReserveNeededIn);
+		// console.log("reserve rate", inErg / bcReserveNeededIn);
 		const equityIn = inErg - liabilitiesIn;
-		console.log("🚀 ~ equityIn:", equityIn);
+		// console.log("🚀 ~ equityIn:", equityIn);
 		const equityRate = equityIn / inCircSigRSV; //nano for rsv
-		console.log("🚀 ~ equityRate:", equityRate);
+		// console.log("🚀 ~ equityRate:", equityRate);
 		const bcDeltaExpected = equityRate * requestRSV;
-		console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
+		// console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
 		const fee = absBigInt(bcDeltaExpected * FEE) / FEE_DENOM;
 		const bcDeltaExpectedWithFee = bcDeltaExpected + fee;
-		console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
+		// console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
 		rateRSVERG = Number(requestRSV) / Number(bcDeltaExpectedWithFee);
-		console.log("🚀 ~ rateRSVERG:", rateRSVERG);
+		// console.log("🚀 ~ rateRSVERG:", rateRSVERG);
 
 		return rateRSVERG;
 	}
@@ -363,18 +362,18 @@ export async function receiveRSVTx(
 	);
 
 	const requestErg = BigInt(Math.floor(Number(requestRSV) / rateWithFee));
-	console.log("🚀 ~ requestErg:", requestErg);
-	console.log("🚀 ~ requestRSV:", requestRSV);
+	// console.log("🚀 ~ requestErg:", requestErg);
+	// console.log("🚀 ~ requestRSV:", requestRSV);
 
 	const outErg = inErg + requestErg;
-	console.log("🚀 ~ inErg:", inErg);
-	console.log("🚀 ~ outErg:", outErg);
+	// console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ outErg:", outErg);
 
 	const outSigRSV = inSigRSV - requestRSV;
-	console.log("🚀 ~ outSigRSV:", outSigRSV);
+	// console.log("🚀 ~ outSigRSV:", outSigRSV);
 
 	const outCircSigRSV = inCircSigRSV + requestRSV;
-	console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
+	// console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
 
 	const outSigUSD = inSigUSD;
 	const outCircSigUSD = inCircSigUSD;
@@ -398,8 +397,8 @@ export async function receiveRSVTx(
 			R5: SLong(BigInt(requestErg)).toHex(), //nano erg
 		});
 
-	console.log(bankBox);
-	console.log(oracleBox);
+	// console.log(bankBox);
+	// console.log(oracleBox);
 
 	bankBox.additionalRegisters.R4 =
 		bankBox.additionalRegisters.R4.serializedValue;
@@ -436,28 +435,28 @@ export async function redeemRSVTx(
 	//ok
 
 	const inErg = BigInt(bankBox.value);
-	console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ inErg:", inErg);
 	const inSigUSD = BigInt(
 		bankBox.assets.find(
 			(asset) => asset.tokenId == TOKEN_SIGUSD // to big int ----->
 		).amount
 	);
 	const inCircSigUSD = BigInt(bankBox.additionalRegisters.R4.renderedValue);
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
 	const inCircSigRSV = BigInt(bankBox.additionalRegisters.R5.renderedValue);
-	console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
+	// console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
 	const inSigRSV = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGRSV).amount
 	);
-	console.log("🚀 ~ inSigRSV:", inSigRSV);
+	// console.log("🚀 ~ inSigRSV:", inSigRSV);
 	const bankNFT = bankBox.assets.find(
 		(asset) => asset.tokenId == TOKEN_BANK_NFT
 	);
-	console.log("🚀 ~ bankNFT:", bankNFT);
+	// console.log("🚀 ~ bankNFT:", bankNFT);
 
 	const oraclePrice =
 		BigInt(oracleBox.additionalRegisters.R4.renderedValue) / 100n;
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
 
 	//calculateSigUsdRateWithFee
 	const rateWithFee = calculateSigRsvRateWithFee(
@@ -470,18 +469,18 @@ export async function redeemRSVTx(
 	);
 
 	const requestErg = BigInt(Math.floor(Number(requestRSV) / rateWithFee));
-	console.log("🚀 ~ requestErg:", requestErg);
-	console.log("🚀 ~ requestRSV:", requestRSV);
+	// console.log("🚀 ~ requestErg:", requestErg);
+	// console.log("🚀 ~ requestRSV:", requestRSV);
 
 	const outErg = inErg + direction * requestErg; //
-	console.log("🚀 ~ inErg:", inErg);
-	console.log("🚀 ~ outErg:", outErg);
+	// console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ outErg:", outErg);
 
 	const outSigRSV = inSigRSV - direction * requestRSV;
-	console.log("🚀 ~ outSigRSV:", outSigRSV);
+	// console.log("🚀 ~ outSigRSV:", outSigRSV);
 
 	const outCircSigRSV = inCircSigRSV + direction * requestRSV;
-	console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
+	// console.log("🚀 ~ outCircSigRSV:", outCircSigRSV);
 
 	const outSigUSD = inSigUSD;
 	const outCircSigUSD = inCircSigUSD;
@@ -506,8 +505,8 @@ export async function redeemRSVTx(
 		R5: SLong(BigInt(direction * requestErg)).toHex(), //nano erg
 	});
 
-	console.log(bankBox);
-	console.log(oracleBox);
+	// console.log(bankBox);
+	// console.log(oracleBox);
 
 	bankBox.additionalRegisters.R4 =
 		bankBox.additionalRegisters.R4.serializedValue;
@@ -543,27 +542,27 @@ export async function receiveSCTx(
 	//ok
 
 	const inErg = BigInt(bankBox.value);
-	console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ inErg:", inErg);
 	const inSigUSD = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGUSD).amount
 	);
 	const inCircSigUSD = BigInt(bankBox.additionalRegisters.R4.renderedValue);
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
 	const inCircSigRSV = BigInt(bankBox.additionalRegisters.R5.renderedValue);
-	console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
+	// console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
 	const inSigRSV = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGRSV).amount
 	);
 
-	console.log("🚀 ~ inSigRSV:", inSigRSV);
+	// console.log("🚀 ~ inSigRSV:", inSigRSV);
 	const bankNFT = bankBox.assets.find(
 		(asset) => asset.tokenId == TOKEN_BANK_NFT
 	);
-	console.log("🚀 ~ bankNFT:", bankNFT);
+	// console.log("🚀 ~ bankNFT:", bankNFT);
 
 	const oraclePrice =
 		BigInt(oracleBox.additionalRegisters.R4.renderedValue) / 100n; //543478260
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
 
 	function minBigInt(...args: bigint[]) {
 		return args.reduce((min, current) => (current < min ? current : min));
@@ -583,7 +582,7 @@ export async function receiveSCTx(
 	): number {
 		let rateSCERG: number;
 		const bcReserveNeededIn = inCircSigUSD * oraclePrice;
-		console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
+		// console.log(oraclePrice, " +Reserve BC:", bcReserveNeededIn);
 		const liabilitiesIn: bigint = maxBigInt(
 			minBigInt(bcReserveNeededIn, inErg),
 			0n
@@ -592,25 +591,25 @@ export async function receiveSCTx(
 		const liableRate = liabilitiesIn / inCircSigUSD; // nanoerg for cent
 		const scNominalPrice = minBigInt(liableRate, oraclePrice); // nanoerg for cent
 
-		console.log("----------RATES-----------");
-		console.log("🚀 ~ liableRate:", liableRate);
-		console.log("🚀 ~ oraclePrice:", oraclePrice);
-		console.log("🚀 ~ scNominalPrice:", scNominalPrice);
-		console.log("                          ");
+		// console.log("----------RATES-----------");
+		// console.log("🚀 ~ liableRate:", liableRate);
+		// console.log("🚀 ~ oraclePrice:", oraclePrice);
+		// console.log("🚀 ~ scNominalPrice:", scNominalPrice);
+		// console.log("                          ");
 
-		console.log("--------------------------");
-		console.log("🚀 ~ requestSC:", requestSC);
+		// console.log("--------------------------");
+		// console.log("🚀 ~ requestSC:", requestSC);
 		const bcDeltaExpected = scNominalPrice * requestSC;
-		console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
+		// console.log("🚀 ~ bcDeltaExpected:", bcDeltaExpected);
 		const fee = absBigInt(bcDeltaExpected * FEE) / FEE_DENOM;
-		console.log("🚀 ~ fee:", fee);
+		// console.log("🚀 ~ fee:", fee);
 		const bcDeltaExpectedWithFee = bcDeltaExpected + fee;
-		console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
+		// console.log("🚀 ~ bcDeltaExpectedWithFee:", bcDeltaExpectedWithFee);
 		rateSCERG = Number(requestSC) / Number(bcDeltaExpectedWithFee);
-		console.log("                          ");
-		console.log("----------FINAL-----------");
-		console.log("🚀 ~ rateSCERG:", rateSCERG);
-		console.log("                          ");
+		// console.log("                          ");
+		// console.log("----------FINAL-----------");
+		// console.log("🚀 ~ rateSCERG:", rateSCERG);
+		// console.log("                          ");
 		return rateSCERG; //cents for nanoerg
 	}
 
@@ -622,34 +621,34 @@ export async function receiveSCTx(
 	);
 
 	const requestErg = BigInt(Math.floor(Number(requestSC) / rateWithFee)); //nanoerg
-	console.log("---------EXCHANGE----------");
-	console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
-	console.log("🚀 ~ requestSC:", requestSC, " | cents");
-	console.log("                          ");
+	// console.log("---------EXCHANGE----------");
+	// console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
+	// console.log("🚀 ~ requestSC:", requestSC, " | cents");
+	// console.log("                          ");
 
 	// Bank out
 	const outErg = inErg + requestErg; //
-	console.log(
-		"inErg:",
-		inErg,
-		" + requestErg:",
-		requestErg,
-		" = outErg:",
-		outErg
-	);
+	// console.log(
+	// 	"inErg:",
+	// 	inErg,
+	// 	" + requestErg:",
+	// 	requestErg,
+	// 	" = outErg:",
+	// 	outErg
+	// );
 
 	const outSigUSD = inSigUSD - requestSC;
-	console.log(
-		"inSigUSD:",
-		inSigUSD,
-		" -requestSC:",
-		requestSC,
-		" = outSigUSD:",
-		outSigUSD
-	);
+	// console.log(
+	// 	"inSigUSD:",
+	// 	inSigUSD,
+	// 	" -requestSC:",
+	// 	requestSC,
+	// 	" = outSigUSD:",
+	// 	outSigUSD
+	// );
 
 	const outCircSigUSD = inCircSigUSD + requestSC;
-	console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
+	// console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
 
 	const outSigRSV = inSigRSV;
 	const outCircSigRSV = inCircSigRSV;
@@ -673,8 +672,8 @@ export async function receiveSCTx(
 			R5: SLong(BigInt(requestErg)).toHex(), //nano erg
 		});
 
-	console.log(bankBox);
-	console.log(oracleBox);
+	// console.log(bankBox);
+	// console.log(oracleBox);
 
 	bankBox.additionalRegisters.R4 =
 		bankBox.additionalRegisters.R4.serializedValue;
@@ -709,27 +708,27 @@ export async function redeemSCTx(
 	const bankBox = await getBankBox();
 
 	const inErg = BigInt(bankBox.value);
-	console.log("🚀 ~ inErg:", inErg);
+	// console.log("🚀 ~ inErg:", inErg);
 	const inSigUSD = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGUSD).amount
 	);
 	const inCircSigUSD = BigInt(bankBox.additionalRegisters.R4.renderedValue);
-	console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
+	// console.log("🚀 ~ inCircSigUSD:", inCircSigUSD);
 	const inCircSigRSV = BigInt(bankBox.additionalRegisters.R5.renderedValue);
-	console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
+	// console.log("🚀 ~ inCircSigRSV:", inCircSigRSV);
 	const inSigRSV = BigInt(
 		bankBox.assets.find((asset) => asset.tokenId == TOKEN_SIGRSV).amount
 	);
 
-	console.log("🚀 ~ inSigRSV:", inSigRSV);
+	// console.log("🚀 ~ inSigRSV:", inSigRSV);
 	const bankNFT = bankBox.assets.find(
 		(asset) => asset.tokenId == TOKEN_BANK_NFT
 	);
-	console.log("🚀 ~ bankNFT:", bankNFT);
+	// console.log("🚀 ~ bankNFT:", bankNFT);
 
 	const oraclePrice =
 		BigInt(oracleBox.additionalRegisters.R4.renderedValue) / 100n;
-	console.log("🚀 ~ oraclePrice:", oraclePrice);
+	// console.log("🚀 ~ oraclePrice:", oraclePrice);
 
 	function minBigInt(...args: bigint[]) {
 		return args.reduce((min, current) => (current < min ? current : min));
@@ -752,34 +751,34 @@ export async function redeemSCTx(
 	);
 
 	const requestErg = BigInt(Math.floor(Number(requestSC) / rateWithFee)); //nanoerg
-	console.log("---------EXCHANGE----------");
-	console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
-	console.log("🚀 ~ requestSC:", requestSC, " | cents");
-	console.log("                          ");
+	// console.log("---------EXCHANGE----------");
+	// console.log("🚀 ~ requestErg:", requestErg, " | nanoergs");
+	// console.log("🚀 ~ requestSC:", requestSC, " | cents");
+	// console.log("                          ");
 
 	// Bank out
 	const outErg = inErg + requestErg * direction; //
-	console.log(
-		"inErg:",
-		inErg,
-		" + requestErg:",
-		requestErg,
-		" = outErg:",
-		outErg
-	);
+	// console.log(
+	// 	"inErg:",
+	// 	inErg,
+	// 	" + requestErg:",
+	// 	requestErg,
+	// 	" = outErg:",
+	// 	outErg
+	// );
 
 	const outSigUSD = inSigUSD - requestSC * direction; //
-	console.log(
-		"inSigUSD:",
-		inSigUSD,
-		" -requestSC:",
-		requestSC,
-		" = outSigUSD:",
-		outSigUSD
-	);
+	// console.log(
+	// 	"inSigUSD:",
+	// 	inSigUSD,
+	// 	" -requestSC:",
+	// 	requestSC,
+	// 	" = outSigUSD:",
+	// 	outSigUSD
+	// );
 
 	const outCircSigUSD = inCircSigUSD + requestSC * direction;
-	console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
+	// console.log("🚀 ~ outCircSigUSD:", outCircSigUSD);
 
 	const outSigRSV = inSigRSV;
 	const outCircSigRSV = inCircSigRSV;
@@ -805,8 +804,8 @@ export async function redeemSCTx(
 		R5: SLong(BigInt(direction * requestErg)).toHex(), //nano erg
 	});
 
-	console.log(bankBox);
-	console.log(oracleBox);
+	// console.log(bankBox);
+	// console.log(oracleBox);
 
 	bankBox.additionalRegisters.R4 =
 		bankBox.additionalRegisters.R4.serializedValue;
@@ -891,7 +890,7 @@ export async function exchangeRsvTx(
 		});
 
 	// ---------- Receipt ------------
-	console.log("direction=", direction, " -1n?", direction == -1n);
+	// console.log("direction=", direction, " -1n?", direction == -1n);
 	const receiptBox = new OutputBuilder(
 		direction == -1n ? requestErg : SAFE_MIN_BOX_VALUE,
 		myAddr
@@ -978,7 +977,7 @@ export async function exchangeScTx(
 		});
 
 	// ---------- Receipt ------------
-	console.log("direction=", direction, " -1n?", direction == -1n);
+	// console.log("direction=", direction, " -1n?", direction == -1n);
 	const receiptBox = new OutputBuilder(
 		direction == -1n ? requestErg : SAFE_MIN_BOX_VALUE,
 		myAddr
