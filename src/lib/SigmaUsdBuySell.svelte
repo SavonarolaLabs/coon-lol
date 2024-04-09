@@ -4,7 +4,7 @@
     import { SIGMA_USD_FEE_DENOM, SIGMA_USD_MINER_FEE_NANO_ERG, SIGMA_USD_UI_FEE, sigma_usd_bank_box, usd_erg_oracle_box } from "./sigmaUsd/store";
 
     // BUY SIDE
-    let amountSigmaUsd  = 100;
+    //price
     $: priceMintSigmaUsd = $sigma_usd_bank_box ? 10**-7 / calculateMintSigUsdRateWithFee(
         BigInt($sigma_usd_bank_box.value),
         BigInt($sigma_usd_bank_box.additionalRegisters.R4.renderedValue),
@@ -12,7 +12,24 @@
         BigInt(amountSigmaUsd*100),
         1n,
     ) : 0
-    $: valueMintSigmaUsd = $sigma_usd_bank_box ? calcMintValue(amountSigmaUsd,priceMintSigmaUsd): 0 ;
+
+    //amount
+    let amountSigmaUsd: number  = 100;
+    function onInputChangeAmountSigmaUsd(){
+        calcValueMintSigmaUsd()
+    }
+
+    // value
+    //$: valueMintSigmaUsd = $sigma_usd_bank_box ? calcMintValue(amountSigmaUsd,priceMintSigmaUsd): 0 ;
+    let valueMintSigmaUsd: number|undefined;
+    function onInputChangeValueMintSigmaUsd():void{
+        const amount = valueMintSigmaUsd && priceMintSigmaUsd ? valueMintSigmaUsd/priceMintSigmaUsd : 0
+        amountSigmaUsd  = Math.floor(amount);
+        console.log("amount changed")
+    }
+    function calcValueMintSigmaUsd():void{
+        valueMintSigmaUsd = calcMintValue(amountSigmaUsd,priceMintSigmaUsd)
+    }
 
     $: protocolFee = $sigma_usd_bank_box ? calcMintFee(amountSigmaUsd,priceMintSigmaUsd): 0 ;
 
@@ -40,7 +57,7 @@
         BigInt(valueERG*10**9),
         1n,
     ) : 0
-    $: valueRedeemSigmaUsd = $sigma_usd_bank_box ? calcRedeemValue(valueERG, priceRedeemSigmaUsd): 0 ;
+    $: amountRedeemSigmaUsd = $sigma_usd_bank_box ? calcRedeemValue(valueERG, priceRedeemSigmaUsd): 0 ;
 
     function calcRedeemValue(amount:number, price:number): number{
         const value = amount / price
@@ -67,13 +84,13 @@
                 <div class="w-40">Price: </div><input type="text" bind:value={priceMintSigmaUsd}><div class="ml-2">ERG</div>
             </div>
             <div class="flex items-center">
-                <div class="w-40">Amount: </div><input type="text" bind:value={amountSigmaUsd}><div class="ml-2">SigmaUSD</div>
+                <div class="w-40">Amount: </div><input type="text" bind:value={amountSigmaUsd} on:input={onInputChangeAmountSigmaUsd}><div class="ml-2">SigmaUSD</div>
             </div>
             <div>
-                <TokenSlider bind:amount={amountSigmaUsd} on:change={e => amountSigmaUsd = e.detail} />
+                <TokenSlider bind:amount={amountSigmaUsd} on:change={e => {amountSigmaUsd = e.detail; onInputChangeAmountSigmaUsd()}} />
             </div>
             <div class="flex items-center">
-                <div class="w-40">Value: </div><input type="text" bind:value={valueMintSigmaUsd}><div class="ml-2">ERG</div>
+                <div class="w-40">Value: </div><input type="text" bind:value={valueMintSigmaUsd} on:input={onInputChangeValueMintSigmaUsd}><div class="ml-2">ERG</div>
             </div>
             <button class="text-center w-full border py-2">BUY</button>
             <div class="flex items-center">
@@ -91,7 +108,7 @@
                 <div class="w-40">Price: </div><input type="text" bind:value={priceRedeemSigmaUsd}><div class="ml-2">ERG</div>
             </div>
             <div class="flex items-center">
-                <div class="w-40">Amount: </div><input type="text" bind:value={valueRedeemSigmaUsd}><div class="ml-2">SigmaUSD</div>
+                <div class="w-40">Amount: </div><input type="text" bind:value={amountRedeemSigmaUsd}><div class="ml-2">SigmaUSD</div>
             </div>
             <TokenSlider bind:amount={valueERG} on:change={e => valueERG = e.detail} />
             <div class="flex items-center">
