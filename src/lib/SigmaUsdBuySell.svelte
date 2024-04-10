@@ -25,7 +25,6 @@
     function onInputChangeValueMintSigmaUsd():void{
         const amount = valueMintSigmaUsd && priceMintSigmaUsd ? valueMintSigmaUsd/priceMintSigmaUsd : 0
         amountSigmaUsd  = Math.floor(amount);
-        console.log("amount changed")
     }
     function calcValueMintSigmaUsd():void{
         valueMintSigmaUsd = calcMintValue(amountSigmaUsd,priceMintSigmaUsd)
@@ -42,7 +41,6 @@
 
     function calcMintFee(amount:number, price:number): number{
         const contractFee = (amount * price) / 1.02 * 0.02
-        console.log({contractFee})
         const uiFee = (amount * price) * SIGMA_USD_UI_FEE / SIGMA_USD_FEE_DENOM
         const minerFee = SIGMA_USD_MINER_FEE_NANO_ERG * 10**-9
         return contractFee + uiFee + minerFee
