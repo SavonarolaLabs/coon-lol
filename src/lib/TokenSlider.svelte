@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
     export let amount = 0;
+    export let onChange:Function = ()=>{};
     $: gradient = `linear-gradient(to right, #6e6d6d 0%, #6e6d6d ${amount}%, #d3d3d3 ${amount}%, #d3d3d3 100%)`;
     $: leftColor = amount >= 25 ? '#6e6d6d' : '#d3d3d3';
     $: middleLeftColor = amount >= 50 ? '#6e6d6d' : '#d3d3d3';
@@ -10,7 +11,7 @@
 
   
   <div class="slider-container">
-    <input type="range" min="0" max="100" bind:value={amount} style="--gradient: {gradient}"/>
+    <input type="range" min="0" max="100" bind:value={amount} style="--gradient: {gradient}" on:input={e => onChange(e)}/>
     <span class="tooltip" style="left: calc({amount}% * 0.95);">{amount}%</span>
     <div class="marker-container">
         <div class="marker marker-0" style="background-color: #6e6d6d;"></div>

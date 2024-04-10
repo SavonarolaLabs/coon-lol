@@ -63,6 +63,11 @@
         const minerFee = SIGMA_USD_MINER_FEE_NANO_ERG * 10**-9 / price
         return value + uiFee + minerFee
     }
+
+    function tokenSliderChange(e:Event){
+        amountSigmaUsd = e?.target?.value; 
+        onInputChangeAmountSigmaUsd()
+    }
 </script>
 <div>
     {#if $sigma_usd_bank_box && $usd_erg_oracle_box}
@@ -85,7 +90,7 @@
                 <div class="w-40">Amount: </div><input type="text" bind:value={amountSigmaUsd} on:input={onInputChangeAmountSigmaUsd}><div class="ml-2">SigmaUSD</div>
             </div>
             <div>
-                <TokenSlider bind:amount={amountSigmaUsd} on:change={e => {amountSigmaUsd = e.detail; onInputChangeAmountSigmaUsd()}} />
+                <TokenSlider bind:amount={amountSigmaUsd} onChange={tokenSliderChange} />
             </div>
             <div class="flex items-center">
                 <div class="w-40">Value: </div><input type="text" bind:value={valueMintSigmaUsd} on:input={onInputChangeValueMintSigmaUsd}><div class="ml-2">ERG</div>
